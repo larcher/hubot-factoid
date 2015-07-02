@@ -23,6 +23,10 @@
 
 class Factoids
   constructor: (@robot) ->
+    # make sure @cache is initialized 
+    # even if the brain is loaded before this constructor runs
+    @cache = @robot.brain.data.factoids
+    @cache = {} unless @cache
     @robot.brain.on 'loaded', =>
       @cache = @robot.brain.data.factoids
       @cache = {} unless @cache
